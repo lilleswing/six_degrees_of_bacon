@@ -6,6 +6,10 @@
 var giphyKey = "Muo79oxFvs3iuv21WGDWaX041M161BAO";
 var actors = {};
 var movies = {};
+
+var leftActor = "";
+var rightActor = "Kevin Bacon";
+
 $.ajax({
   url: "static/actors.json",
   method: "GET",
@@ -130,12 +134,21 @@ function setRandomFromImage() {
   var myActor = randomProperty(actors);
   console.log(myActor);
   randomGif(myActor, "fromImage");
+  leftActor = myActor;
   $("#fromActor").attr("value", myActor);
 }
 
 $("#searchButton").click(function() {
   var fromActor = $("#fromActor").val();
+  if (fromActor != leftActor) {
+    leftActor = fromActor;
+    randomGif(fromActor, "fromImage");
+  }
   var toActor = $("#toActor").val();
+  if (rightActor != toActor) {
+    rightActor = toActor;
+    randomGif(toActor, "toImage");
+  }
   var path = bfs(fromActor, toActor);
   path = prettyList(path);
   $("#myPath").html(path);
