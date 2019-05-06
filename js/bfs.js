@@ -3,13 +3,15 @@
 //var actors = JSON.parse(fs.readFileSync('actors.json', 'utf8'));
 //var movies = JSON.parse(fs.readFileSync('movies.json', 'utf8'));
 //
-var actors = {}
-var movies = {}
+var giphyKey = "Muo79oxFvs3iuv21WGDWaX041M161BAO";
+var actors = {};
+var movies = {};
 $.ajax({
   url: "static/actors.json",
   method: "GET",
   success: function(x) {
     actors = x;
+    setRandomFromImage();
   }
 });
 
@@ -20,6 +22,35 @@ $.ajax({
     movies = x;
   }
 });
+
+
+
+function logIt(x) {
+  console.log(x);
+}
+
+function randomGif(s, imgId) {
+  s = s.replace(/ /g,"+");
+  var myUrl = "http://api.giphy.com/v1/gifs/search?q=" + s + "&api_key="+ giphyKey + "&limit=1";
+  $.ajax({
+    url: myUrl,
+    method: "GET",
+    success: function(x) {
+      var imgUrl = x['data'][0]['embed_url'];
+      var idLookup = "#" + imgId;
+      var myHtml = $('<iframe />').attr({
+        'id': idLookup,
+        "src": imgUrl,
+        "class": "actor-img giphy-embed"
+      });
+
+      var containerLookup = "#" + imgId + "Container";
+      $(containerLookup).empty();
+      myHtml.appendTo(containerLookup);
+    }
+  });
+}
+
 
 function deepCopy(o) {
    return JSON.parse(JSON.stringify(o));
@@ -89,9 +120,18 @@ function prettyList(a) {
 }
 
 function randomProperty(obj) {
-    var keys = Object.keys(obj)
-    return obj[keys[ keys.length * Math.random() << 0]];
+    var keys = Object.keys(obj);
+    var key_index = Math.floor(keys.length * Math.random());
+    console.log("Key Index:" + key_index);
+    return keys[key_index]
 };
+
+function setRandomFromImage() {
+  var myActor = randomProperty(actors);
+  console.log(myActor);
+  randomGif(myActor, "fromImage");
+  $("#fromActor").attr("value", myActor);
+}
 
 $("#searchButton").click(function() {
   var fromActor = $("#fromActor").val();
@@ -101,3 +141,4 @@ $("#searchButton").click(function() {
   $("#myPath").html(path);
 });
 
+randomGif("Kevin Bacon", "toImage");
