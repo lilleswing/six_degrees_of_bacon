@@ -4,18 +4,40 @@
 <head>
   <title>jQuery Demo</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
-  <div>
-    <input id="fromActor", value="From Actor">
-    <input id="toActor", value="Kevin Bacon">
-    <input type=submit id="searchButton">
-  </div>
-  <div id="myPath">
+  <div class="container">
+    <div class="row">
+      <div class="col actor-cell">
+        <img id="fromImage" class="actor-img" src="https://timedotcom.files.wordpress.com/2018/01/tom-hanks.jpg">
+      </div>
+      <div class="col actor-cell">
+        <img id="toImage" class="actor-img" src="https://pixel.nymag.com/imgs/daily/vulture/2015/03/02/02-kevin-bacon-chatroom.w330.h412.jpg">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col center-submit">
+        <input class="actor-input" id="fromActor" value="Tom Hanks">
+      </div>
+      <div class="col center-submit">
+        <input class="actor-input" id="toActor" value="Kevin Bacon">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col center-submit">
+        <button id="searchButton" type="button" class="btn">Find Links</button>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div id="myPath">
+    </div>
   </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="js/bfs.js"></script>
 </body>
 

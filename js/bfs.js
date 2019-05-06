@@ -67,8 +67,7 @@ function bfs_helper(q, dest) {
       var new_actors = movies[current];
       appendQueue(q, node, new_actors, used);
     } else {
-      console.log(current + " not in actors or movies");
-    }
+      console.log(current + " not in actors or movies"); }
   }
 }
 
@@ -89,6 +88,10 @@ function prettyList(a) {
   return s
 }
 
+function randomProperty(obj) {
+    var keys = Object.keys(obj)
+    return obj[keys[ keys.length * Math.random() << 0]];
+};
 
 $("#searchButton").click(function() {
   var fromActor = $("#fromActor").val();

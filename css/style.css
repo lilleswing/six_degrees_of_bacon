@@ -1,0 +1,31 @@
+.actor-cell {
+    /*border: 1px solid #444;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 100%;
+}
+.actor-img {
+    align-self: flex-end;
+    resize:both;
+    max-width: 100%;
+    max-height:100%;
+    height: auto;
+    width: auto;
+}
+
+.actor-input {
+    /*width: 100%;*/
+}
+
+.center-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%
+}
+
+input {
+    text-align: center;
+}
