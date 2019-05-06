@@ -90,7 +90,7 @@ function bfs_helper(q, dest) {
     if (current === dest) {
       return node["path"];
     }
-    if (node["path"].length > 20) {
+    if (node["path"].length > 8) {
       return "No Path To " + dest + "!"
     }
     // Expand through movies
@@ -106,11 +106,12 @@ function bfs_helper(q, dest) {
   }
 }
 
-function bfs(from_actor, to_actor) {
+async function bfs(from_actor, to_actor) {
   var node = {"current":from_actor, "path":[from_actor]};
   var q = [node];
   var path = bfs_helper(q, to_actor);
-  return path;
+  path = prettyList(path);
+  $("#myPath").html(path);
 }
 
 function prettyList(a) {
@@ -133,9 +134,9 @@ function randomProperty(obj) {
 function setRandomFromImage() {
   var myActor = randomProperty(actors);
   console.log(myActor);
+  $("#fromActor").attr("value", myActor);
   randomGif(myActor, "fromImage");
   leftActor = myActor;
-  $("#fromActor").attr("value", myActor);
 }
 
 $("#searchButton").click(function() {
@@ -149,9 +150,22 @@ $("#searchButton").click(function() {
     rightActor = toActor;
     randomGif(toActor, "toImage");
   }
-  var path = bfs(fromActor, toActor);
-  path = prettyList(path);
-  $("#myPath").html(path);
+  if (!(fromActor in actors)) {
+    $("myPath").html("We don't know " + fromActor);
+    return
+  }
+  if (!(toActor in actors)) {
+    $("myPath").html("We don't know " + toActor);
+    return;
+  }
+  var loadingHtml = "<img src='static/loading.gif' />"
+  $("#myPath").html(loadingHtml);
+
+  setTimeout(function() {
+    console.log("timeout");
+    bfs(fromActor, toActor);
+  }, 1);
 });
 
 randomGif("Kevin Bacon", "toImage");
+
