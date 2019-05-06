@@ -6,7 +6,7 @@
 var actors = {}
 var movies = {}
 $.ajax({
-  url: "/static/actors.json",
+  url: "static/actors.json",
   method: "GET",
   success: function(x) {
     actors = x;
@@ -14,7 +14,7 @@ $.ajax({
 });
 
 $.ajax({
-  url: "/static/movies.json",
+  url: "static/movies.json",
   method: "GET",
   success: function(x) {
     movies = x;
