@@ -151,11 +151,12 @@ $("#searchButton").click(function() {
     randomGif(toActor, "toImage");
   }
   if (!(fromActor in actors)) {
-    $("myPath").html("We don't know " + fromActor);
+    console.log("Missing");
+    $("#myPath").html("We don't know " + fromActor);
     return
   }
   if (!(toActor in actors)) {
-    $("myPath").html("We don't know " + toActor);
+    $("#myPath").html("We don't know " + toActor);
     return;
   }
   var loadingHtml = "<img src='static/loading.gif' />"
