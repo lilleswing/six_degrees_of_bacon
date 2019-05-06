@@ -31,7 +31,7 @@ function logIt(x) {
 
 function randomGif(s, imgId) {
   s = s.replace(/ /g,"+");
-  var myUrl = "http://api.giphy.com/v1/gifs/search?q=" + s + "&api_key="+ giphyKey + "&limit=1";
+  var myUrl = "https://api.giphy.com/v1/gifs/search?q=" + s + "&api_key="+ giphyKey + "&limit=1";
   $.ajax({
     url: myUrl,
     method: "GET",
